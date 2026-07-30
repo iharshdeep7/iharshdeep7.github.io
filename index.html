@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harsh Deep — Supply Chain & Data Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:       #4A7C59;
+      --sage-light: #6A9E78;
+      --sage-pale:  #EBF3ED;
+      --sage-mist:  #F4F8F5;
+      --white:      #FFFFFF;
+      --ink:        #1C2B1E;
+      --ink-mid:    #3D5242;
+      --muted:      #7A9080;
+      --border:     #D8E8DC;
+      --border-mid: #C2D8C8;
+      --warm:       #F9FAF9;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 60px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 22px; font-weight: 400;
+      color: var(--ink); letter-spacing: -0.3px;
+    }
+    .nav-brand span { color: var(--sage); font-style: italic; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 13px; font-weight: 500;
+      transition: color 0.2s; letter-spacing: 0.2px;
+    }
+    .nav-links a:hover { color: var(--sage); }
+    .nav-cta {
+      background: var(--sage); color: var(--white) !important;
+      padding: 8px 20px; border-radius: 100px;
+      font-size: 13px !important; font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--sage-light) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--sage-mist);
+      display: flex; align-items: center;
+      padding: 120px 60px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute; right: -120px; top: 50%;
+      transform: translateY(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,124,89,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-bg-line {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: var(--border);
+    }
+    .hero-inner {
+      max-width: 1080px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 100px; align-items: center;
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 100px; padding: 6px 14px 6px 8px;
+      margin-bottom: 28px;
+    }
+    .hero-label-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--sage); animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.6; transform:scale(1.2); }
+    }
+    .hero-label-text { font-size: 12px; font-weight: 600; color: var(--sage); letter-spacing: 0.3px; }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(42px, 5.5vw, 66px);
+      font-weight: 300; line-height: 1.08;
+      color: var(--ink); letter-spacing: -1.5px;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--sage);
+      font-weight: 300;
+    }
+    .hero-sub {
+      font-size: 16px; color: var(--muted);
+      line-height: 1.8; margin-bottom: 40px;
+      max-width: 440px; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .btn-sage {
+      background: var(--sage); color: var(--white);
+      padding: 14px 30px; border-radius: 100px;
+      font-weight: 600; font-size: 14px; text-decoration: none;
+      transition: all 0.2s; display: inline-block; letter-spacing: 0.1px;
+    }
+    .btn-sage:hover { background: var(--sage-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(74,124,89,0.25); }
+    .btn-ghost {
+      color: var(--ink-mid); font-size: 14px; font-weight: 500;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--sage); }
+    .btn-ghost::after { content: '↓'; font-size: 16px; }
+
+    /* Hero right */
+    .hero-right { display: flex; flex-direction: column; gap: 12px; }
+    .hero-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 24px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .hero-card:hover { box-shadow: 0 4px 24px rgba(74,124,89,0.1); border-color: var(--border-mid); }
+    .hero-card-label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px; }
+    .hero-card-val {
+      font-family: 'Fraunces', serif; font-size: 36px;
+      font-weight: 300; color: var(--ink); letter-spacing: -1px; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-card-val span { font-size: 14px; letter-spacing: 0; font-family: 'Inter', sans-serif; color: var(--muted); }
+    .hero-card-desc { font-size: 13px; color: var(--muted); font-weight: 400; }
+    .hero-cards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ── SHARED SECTION ── */
+    .section { padding: 96px 60px; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 14px;
+    }
+    .section-h {
+      font-family: 'Fraunces', serif; font-weight: 300;
+      font-size: clamp(30px, 4vw, 44px);
+      color: var(--ink); letter-spacing: -0.8px; line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .section-h em { color: var(--sage); font-style: italic; }
+    .section-p { font-size: 15px; color: var(--muted); max-width: 520px; line-height: 1.8; font-weight: 300; }
+    .section-rule { width: 32px; height: 2px; background: var(--sage); margin: 20px 0 48px; border-radius: 2px; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .about-body p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 18px; font-weight: 300; }
+    .about-body strong { color: var(--ink); font-weight: 600; }
+    .about-cards { display: flex; flex-direction: column; gap: 10px; }
+    .about-card {
+      background: var(--sage-mist); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 20px;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .about-card-icon { font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+    .about-card-label { font-size: 11px; font-weight: 600; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 3px; }
+    .about-card-val { font-size: 13px; color: var(--ink-mid); font-weight: 400; line-height: 1.5; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--sage-mist); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 24px;
+      transition: all 0.25s; cursor: default;
+    }
+    .skill-card:hover { border-color: var(--sage-light); box-shadow: 0 8px 32px rgba(74,124,89,0.1); transform: translateY(-2px); }
+    .skill-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .skill-emoji { font-size: 24px; }
+    .skill-level {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+    }
+    .level-strong { background: var(--sage-pale); color: var(--sage); }
+    .level-mid { background: #FFF8E1; color: #8a6000; }
+    .level-building { background: #F3E5F5; color: #6A1B9A; }
+    .skill-name { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; font-weight: 300; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      font-size: 11px; padding: 3px 10px; border-radius: 100px;
+      background: var(--sage-pale); color: var(--sage); font-weight: 500;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--white); }
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid; grid-template-columns: 200px 1fr;
+      gap: 48px; padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-left { padding-top: 4px; }
+    .exp-date { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+    .exp-co {
+      font-family: 'Fraunces', serif; font-size: 17px;
+      font-weight: 400; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.2px;
+    }
+    .exp-loc { font-size: 12px; color: var(--muted); }
+    .exp-right {}
+    .exp-role {
+      font-size: 16px; font-weight: 600; color: var(--sage);
+      margin-bottom: 14px;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .exp-bullets li {
+      font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300;
+      padding-left: 18px; position: relative;
+    }
+    .exp-bullets li::before {
+      content: ''; position: absolute; left: 0; top: 10px;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--sage-light);
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--sage-mist); }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .project-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      text-decoration: none; display: flex; flex-direction: column;
+      transition: all 0.25s;
+    }
+    .project-card:hover { border-color: var(--sage-light); box-shadow: 0 8px 32px rgba(74,124,89,0.12); transform: translateY(-2px); }
+    .project-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 12px;
+    }
+    .project-title { font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+    .project-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; flex: 1; font-weight: 300; }
+    .project-footer { display: flex; justify-content: space-between; align-items: flex-end; }
+    .project-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-chip {
+      font-size: 11px; padding: 3px 10px; border-radius: 100px;
+      background: var(--sage-pale); color: var(--sage); font-weight: 500;
+    }
+    .project-arrow {
+      font-size: 18px; color: var(--border-mid);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .project-card:hover .project-arrow { color: var(--sage); transform: translate(2px, -2px); }
+    .project-wip {
+      font-size: 11px; color: var(--muted); font-style: italic; margin-top: 10px;
+    }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--white); }
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .edu-card {
+      background: var(--sage-mist); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 24px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .edu-icon { font-size: 28px; margin-bottom: 6px; }
+    .edu-degree { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 400; color: var(--ink); letter-spacing: -0.3px; }
+    .edu-school { font-size: 13px; color: var(--sage); font-weight: 600; }
+    .edu-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .edu-gpa {
+      margin-top: 8px; display: inline-flex; align-items: center; gap: 6px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 100px; padding: 5px 14px; width: fit-content;
+    }
+    .edu-gpa-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); }
+    .edu-gpa-text { font-size: 12px; font-weight: 700; color: var(--sage); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--ink); }
+    .contact-inner { max-width: 1080px; margin: 0 auto; }
+    .contact-top {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start; margin-bottom: 60px;
+    }
+    .contact-h {
+      font-family: 'Fraunces', serif; font-weight: 300;
+      font-size: clamp(28px, 3.5vw, 40px);
+      color: var(--white); letter-spacing: -0.8px; line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .contact-h em { color: #9DC4A8; font-style: italic; }
+    .contact-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.8; font-weight: 300; }
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+      padding: 16px 20px; border-radius: 12px; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .contact-link:hover {
+      background: rgba(74,124,89,0.15);
+      border-color: rgba(74,124,89,0.4);
+    }
+    .contact-link-icon { font-size: 18px; width: 32px; text-align: center; flex-shrink: 0; }
+    .contact-link-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.3); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 2px; }
+    .contact-link-val { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 400; }
+    .contact-rule { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 32px; }
+    .contact-foot { display: flex; justify-content: space-between; align-items: center; }
+    .contact-foot p { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .contact-foot a { color: #9DC4A8; text-decoration: none; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      nav { padding: 0 24px; }
+      .nav-links li:not(:last-child) { display: none; }
+      .hero, .section { padding-left: 24px; padding-right: 24px; }
+      .hero-inner, .about-grid, .contact-top { grid-template-columns: 1fr; gap: 48px; }
+      .hero-bg-circle { display: none; }
+      .skills-grid, .projects-grid, .edu-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+      .hero-cards-row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Harsh <span>Deep</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-line"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">
+        <div class="hero-label-dot"></div>
+        <span class="hero-label-text">Open to opportunities in NYC</span>
+      </div>
+      <h1>Supply chain<br>analyst with an<br><em>analytical edge</em></h1>
+      <p class="hero-sub">Six years running real logistics operations. A Master's in Business Analytics. The rare professional who understands supply chains from the ground up — not just the data layer.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-sage">View my work</a>
+        <a href="#contact" class="btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-label">Experience</div>
+        <div class="hero-card-val">6+ <span>years</span></div>
+        <div class="hero-card-desc">Supply chain operations & data analytics</div>
+      </div>
+      <div class="hero-cards-row">
+        <div class="hero-card">
+          <div class="hero-card-label">MS Analytics GPA</div>
+          <div class="hero-card-val">4.0</div>
+          <div class="hero-card-desc">St. John's University</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">BI Tools</div>
+          <div class="hero-card-val">3</div>
+          <div class="hero-card-desc">Power BI · Tableau · Looker</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Based in</div>
+        <div class="hero-card-val" style="font-size:24px;letter-spacing:-0.5px">Queens, New York</div>
+        <div class="hero-card-desc">Available for on-site roles in NYC metro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-tag">About</div>
+        <h2 class="section-h">The analyst who's been <em>on the floor</em></h2>
+        <div class="section-rule"></div>
+        <div class="about-body">
+          <p>Most analysts understand supply chains through spreadsheets. I understand them through five years of managing real dispatch operations — routing fleets, coordinating vendors, flagging shortages before they became crises, and building the reports that kept leadership moving.</p>
+          <p>I came to analytics from the ground up. My <strong>MS in Business Analytics (GPA 4.0)</strong> from St. John's University gave me the technical depth. My time at <strong>Cigno Logistics</strong> gave me the operational instinct that no classroom teaches.</p>
+          <p>Today I build dashboards, data pipelines, and supply chain models that don't just show what happened — they show what's about to happen and what to do about it.</p>
+        </div>
+      </div>
+      <div class="about-cards reveal reveal-delay-2">
+        <div class="about-card">
+          <div class="about-card-icon">💼</div>
+          <div>
+            <div class="about-card-label">Current Role</div>
+            <div class="about-card-val">Business Analyst — Sunny Truck Driving School, NY</div>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🎓</div>
+          <div>
+            <div class="about-card-label">Education</div>
+            <div class="about-card-val">MS Business Analytics · St. John's University · GPA 4.0</div>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🏭</div>
+          <div>
+            <div class="about-card-label">Previous</div>
+            <div class="about-card-val">Team Lead Dispatch Operations · Cigno Logistics · 5 years</div>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🎯</div>
+          <div>
+            <div class="about-card-label">Niche</div>
+            <div class="about-card-val">Supply chain analytics · Demand planning · Logistics data science</div>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🔍</div>
+          <div>
+            <div class="about-card-label">Looking for</div>
+            <div class="about-card-val">Supply Chain Analyst · Data Analyst · Demand Planning roles · NYC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Skills</div>
+      <h2 class="section-h">Tools I work with</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-top">
+          <div class="skill-emoji">📊</div>
+          <span class="skill-level level-strong">Advanced</span>
+        </div>
+        <div class="skill-name">Excel</div>
+        <div class="skill-desc">Power Query, dynamic arrays, Power Pivot, complex nested formulas, automated reporting pipelines.</div>
+        <div class="skill-chips">
+          <span class="chip">Power Query</span><span class="chip">XLOOKUP</span>
+          <span class="chip">SUMIFS</span><span class="chip">Power Pivot</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-top">
+          <div class="skill-emoji">📈</div>
+          <span class="skill-level level-strong">Intermediate</span>
+        </div>
+        <div class="skill-name">Power BI</div>
+        <div class="skill-desc">KPI dashboards, DAX measures, data modeling, and What-If parameters for scenario planning.</div>
+        <div class="skill-chips">
+          <span class="chip">DAX</span><span class="chip">Data Modeling</span>
+          <span class="chip">KPI Dashboards</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-top">
+          <div class="skill-emoji">🗄️</div>
+          <span class="skill-level level-mid">Intermediate</span>
+        </div>
+        <div class="skill-name">SQL</div>
+        <div class="skill-desc">Data extraction, JOINs, CTEs, window functions and aggregation for supply chain analysis.</div>
+        <div class="skill-chips">
+          <span class="chip">JOINs</span><span class="chip">CTEs</span>
+          <span class="chip">Window Functions</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-top">
+          <div class="skill-emoji">🐍</div>
+          <span class="skill-level level-building">Building</span>
+        </div>
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">Data cleaning and analysis with pandas. Exploratory data analysis and visualizations.</div>
+        <div class="skill-chips">
+          <span class="chip">pandas</span><span class="chip">matplotlib</span>
+          <span class="chip">seaborn</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-top">
+          <div class="skill-emoji">📉</div>
+          <span class="skill-level level-strong">Intermediate</span>
+        </div>
+        <div class="skill-name">Tableau</div>
+        <div class="skill-desc">Interactive dashboards, calculated fields, and LOD expressions published on Tableau Public.</div>
+        <div class="skill-chips">
+          <span class="chip">Dashboards</span><span class="chip">LOD</span>
+          <span class="chip">Tableau Public</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-top">
+          <div class="skill-emoji">🏭</div>
+          <span class="skill-level level-strong">5 yrs exp</span>
+        </div>
+        <div class="skill-name">Supply Chain Domain</div>
+        <div class="skill-desc">Demand planning, shortage identification, vendor coordination, and inventory analytics from real operations.</div>
+        <div class="skill-chips">
+          <span class="chip">Demand Planning</span><span class="chip">Procurement</span>
+          <span class="chip">SLA Tracking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Experience</div>
+      <h2 class="section-h">Where I built this</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="exp-list reveal">
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">Mar 2025 — Present</div>
+          <div class="exp-co">Sunny Truck Driving School</div>
+          <div class="exp-loc">Queens, New York</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Business Analyst</div>
+          <ul class="exp-bullets">
+            <li>Designed and deployed Power BI and Excel dashboards tracking operational KPIs across scheduling, capacity, and performance</li>
+            <li>Built end-to-end data pipelines using SQL and Excel Power Query — cleaning and transforming raw datasets into reporting-ready formats</li>
+            <li>Identified anomalies, capacity constraints, and bottlenecks through dataset analysis, presenting findings to leadership</li>
+            <li>Collaborated cross-functionally with operations and finance teams to define KPI frameworks aligned with business goals</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">May 2024 — Jul 2024</div>
+          <div class="exp-co">Sunny Truck Driving School</div>
+          <div class="exp-loc">Queens, New York</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Business Analyst Intern</div>
+          <ul class="exp-bullets">
+            <li>Analyzed scheduling patterns and throughput data, producing reports that informed resource allocation decisions</li>
+            <li>Built Excel dashboards visualizing performance trends across student cohorts and instructor capacity</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">Mar 2018 — Jul 2023</div>
+          <div class="exp-co">Cigno Logistics LLP</div>
+          <div class="exp-loc">India</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Team Lead — Supply Chain & Dispatch Operations</div>
+          <ul class="exp-bullets">
+            <li>Managed end-to-end dispatch for a commercial fleet — routing, scheduling, and real-time coordination across multiple delivery corridors</li>
+            <li>Analyzed daily demand vs. supply capacity — identifying shortages, recommending substitutions, coordinating with third-party vendors</li>
+            <li>Built daily, weekly, and monthly Excel reports tracking SLA compliance, driver KPIs, and delivery performance for leadership</li>
+            <li>Trained and mentored junior coordinators on systems, performance standards, and operational protocols</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Projects</div>
+      <h2 class="section-h">Work samples & <em>portfolio</em></h2>
+      <div class="section-rule"></div>
+      <p class="section-p" style="margin-bottom:40px">Real analytical work — supply chain scenarios, dashboards, and data models. Updated as projects are completed.</p>
+    </div>
+    <div class="projects-grid">
+      <a href="#" class="project-card reveal">
+        <div class="project-eyebrow">Supply Chain Analytics</div>
+        <div class="project-title">Diamond Supply-Demand Analysis</div>
+        <div class="project-desc">End-to-end supply planning model combining inventory, production demand, and purchase order data. Identifies shortages, calculates cost exposure, and generates a weekly status report — modeled on a real luxury goods planning scenario.</div>
+        <div class="project-footer">
+          <div class="project-chips">
+            <span class="project-chip">Excel</span>
+            <span class="project-chip">Power BI</span>
+            <span class="project-chip">DAX</span>
+          </div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-wip">⏳ In progress</div>
+      </a>
+      <a href="#" class="project-card reveal reveal-delay-1">
+        <div class="project-eyebrow">Logistics Analytics</div>
+        <div class="project-title">Dispatch Cost Reduction Analysis</div>
+        <div class="project-desc">SQL and Python analysis of a public logistics dataset identifying highest-cost routes, driver utilization gaps, and delay patterns — paired with operational recommendations drawn from real dispatch experience at Cigno.</div>
+        <div class="project-footer">
+          <div class="project-chips">
+            <span class="project-chip">SQL</span>
+            <span class="project-chip">Python</span>
+            <span class="project-chip">Power BI</span>
+          </div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-wip">⏳ In progress</div>
+      </a>
+      <a href="#" class="project-card reveal">
+        <div class="project-eyebrow">Graduate Work</div>
+        <div class="project-title">MS Business Analytics Projects</div>
+        <div class="project-desc">Selected projects from the MS Business Analytics program at St. John's University — covering supply chain analytics, demand forecasting, and business intelligence reporting.</div>
+        <div class="project-footer">
+          <div class="project-chips">
+            <span class="project-chip">Excel</span>
+            <span class="project-chip">Tableau</span>
+            <span class="project-chip">SQL</span>
+          </div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-wip">⏳ Uploading soon</div>
+      </a>
+      <a href="https://github.com/iharshdeep7" target="_blank" class="project-card reveal reveal-delay-1">
+        <div class="project-eyebrow">GitHub</div>
+        <div class="project-title">All code & notebooks</div>
+        <div class="project-desc">SQL queries, Python notebooks, and data analysis projects — organized by topic. Updated regularly as new work is completed and published.</div>
+        <div class="project-footer">
+          <div class="project-chips">
+            <span class="project-chip">github.com/iharshdeep7</span>
+          </div>
+          <span class="project-arrow">↗</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Education</div>
+      <h2 class="section-h">Academic background</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-degree">M.S. in Business Analytics</div>
+        <div class="edu-school">St. John's University · Queens, NY</div>
+        <div class="edu-meta">Graduated December 2024</div>
+        <div class="edu-gpa">
+          <div class="edu-gpa-dot"></div>
+          <span class="edu-gpa-text">GPA 4.0 / 4.0</span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">⚙️</div>
+        <div class="edu-degree">B.Tech in Mechanical Engineering</div>
+        <div class="edu-school">Chandigarh Engineering College · India</div>
+        <div class="edu-meta">Graduated May 2018</div>
+        <div class="edu-gpa">
+          <div class="edu-gpa-dot"></div>
+          <span class="edu-gpa-text">GPA 3.68 / 4.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="background:var(--ink); padding-bottom:48px;">
+  <div class="contact-inner">
+    <div class="contact-top reveal">
+      <div>
+        <div class="section-tag" style="color:#9DC4A8">Contact</div>
+        <h2 class="contact-h">Open to supply chain and analytics <em>opportunities</em> in NYC</h2>
+        <p class="contact-desc">Looking for a data analyst who understands supply chain operations from the ground up — not just the spreadsheet side? I'd love to connect.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:iharshdeep7@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">iharshdeep7@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://github.com/iharshdeep7" class="contact-link" target="_blank">
+          <div class="contact-link-icon">💻</div>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-val">github.com/iharshdeep7</div>
+          </div>
+        </a>
+        <a href="Harsh_Deep_Resume.pdf" class="contact-link" download>
+          <div class="contact-link-icon">📄</div>
+          <div>
+            <div class="contact-link-label">Resume</div>
+            <div class="contact-link-val">Download PDF</div>
+          </div>
+        </a>
+        <a href="tel:5168000721" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-val">(516) 800-0721</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-rule"></div>
+    <div class="contact-foot">
+      <p>© 2026 Harsh Deep · Queens, NY</p>
+      <p><a href="https://github.com/iharshdeep7">github.com/iharshdeep7</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
