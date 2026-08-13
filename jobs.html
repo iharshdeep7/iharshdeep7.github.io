@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobHunt — Analyst Roles</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#4A7C59;--gl:#6A9E78;--gp:#EBF3ED;--gm:#F4F8F5;--w:#fff;--ink:#1C2B1E;--mid:#3D5242;--mu:#7A9080;--bo:#D8E8DC;--wa:#F9FAF9;--re:#C0392B;--am:#856404;--lr:#FDECEA;--la:#FFF3CD;--lg:#E8F5E9}
+body{font-family:'Inter',sans-serif;background:var(--gm);color:var(--ink);-webkit-font-smoothing:antialiased}
+nav{position:sticky;top:0;z-index:99;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--bo);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px}
+.brand{font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink)}.brand span{color:var(--g);font-style:italic}
+.tabs{display:flex;gap:4px}
+.tab{padding:6px 16px;border-radius:100px;border:none;background:transparent;cursor:pointer;font-size:13px;font-weight:500;color:var(--mu);font-family:inherit;transition:all .2s}
+.tab:hover{background:var(--gp);color:var(--g)}.tab.on{background:var(--g);color:#fff}
+.st{font-size:11px;color:var(--mu);display:flex;align-items:center;gap:5px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pu 2s infinite}
+@keyframes pu{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.nb{background:var(--g);color:#fff;padding:10px 32px;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:500}
+.nb.h{display:none}
+.nbadge{background:#fff;color:var(--g);font-size:11px;font-weight:800;padding:2px 8px;border-radius:100px;margin:0 8px}
+.nx{background:rgba(255,255,255,.2);border:none;color:#fff;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:16px;line-height:24px}
+.pg{display:none}.pg.on{display:block}
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px}
+.ph{padding:24px 0 16px}
+.ph h1{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;margin-bottom:3px}
+.ph p{font-size:13px;color:var(--mu)}
+.rl{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.rbs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.rb{padding:6px 14px;border-radius:100px;border:1.5px solid var(--bo);background:#fff;cursor:pointer;font-size:12px;font-weight:600;color:var(--mid);font-family:inherit;transition:all .2s}
+.rb:hover{border-color:var(--g);color:var(--g);background:var(--gp)}.rb.on{background:var(--g);color:#fff;border-color:var(--g)}
+.sc{background:#fff;border:1px solid var(--bo);border-radius:14px;padding:16px 18px;margin-bottom:12px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr auto;gap:10px;align-items:end}
+.cg{display:flex;flex-direction:column;gap:3px}
+.cl{font-size:10px;font-weight:700;color:var(--mu);letter-spacing:.5px;text-transform:uppercase}
+input,select{padding:9px 11px;border:1.5px solid var(--bo);border-radius:8px;font-size:13px;color:var(--ink);background:var(--wa);font-family:inherit;outline:none;transition:border-color .2s;width:100%}
+input:focus,select:focus{border-color:var(--g);background:#fff}
+.btn{background:var(--g);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;transition:all .2s;white-space:nowrap}
+.btn:hover{background:var(--gl);transform:translateY(-1px)}.btn:disabled{background:var(--bo);cursor:not-allowed;transform:none}
+.fb{background:#fff;border:1px solid var(--bo);border-radius:12px;padding:11px 18px;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fl{font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+.fcs{display:flex;gap:5px;flex-wrap:wrap}
+.fc{padding:4px 11px;border-radius:100px;border:1.5px solid var(--bo);background:var(--wa);cursor:pointer;font-size:11px;font-weight:600;color:var(--mu);font-family:inherit;transition:all .2s}
+.fc:hover{border-color:var(--g);color:var(--g)}.fc.on{background:var(--gp);border-color:var(--g);color:var(--g)}
+.fdiv{width:1px;height:20px;background:var(--bo)}
+.ri{margin-left:auto;font-size:12px;color:var(--mu);white-space:nowrap}
+.rg{display:flex;flex-direction:column;gap:10px;margin-bottom:40px}
+/* Job Card */
+.jc{background:#fff;border:1px solid var(--bo);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;transition:all .2s}
+.jc:hover{border-color:var(--gl);box-shadow:0 4px 20px rgba(74,124,89,.1)}.jc.new{border-left:3px solid var(--g)}
+.jh{display:flex;gap:11px;margin-bottom:7px}
+.jav{width:38px;height:38px;border-radius:7px;background:var(--gp);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--g);flex-shrink:0;border:1px solid var(--bo)}
+.jt{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px;line-height:1.3}
+.jco{font-size:13px;color:var(--g);font-weight:600;margin-bottom:3px}
+.jm{display:flex;gap:10px;flex-wrap:wrap}
+.jmi{font-size:12px;color:var(--mu)}
+.jde{font-size:13px;color:var(--mu);line-height:1.6;margin:7px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.jts{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.tag{font-size:11px;padding:2px 8px;border-radius:100px;font-weight:500}
+.tn{background:#E8F5E9;color:#155724;font-weight:700}.tr{background:#F3E5F5;color:#4a0080}.ts{background:var(--gp);color:var(--g)}
+.vb{display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:100px;font-size:11px;font-weight:700;white-space:nowrap}
+.vy{background:var(--lg);color:#155724}.vn{background:var(--lr);color:var(--re)}.vm{background:var(--la);color:var(--am)}
+.jr{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.jsal{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);text-align:right}
+.jss{font-size:11px;color:var(--mu);text-align:right}
+.jas{display:flex;gap:5px}
+.bs{padding:6px 13px;border-radius:100px;border:1.5px solid var(--bo);background:#fff;cursor:pointer;font-size:12px;font-weight:600;color:var(--mid);font-family:inherit;transition:all .2s;text-decoration:none;display:inline-block}
+.bs:hover{border-color:var(--g);color:var(--g);background:var(--gp)}.bs.sv{background:var(--g);color:#fff;border-color:var(--g)}.bs.gr{background:var(--g);color:#fff;border-color:var(--g)}.bs.gr:hover{background:var(--gl)}
+/* States */
+.spin{text-align:center;padding:60px 20px;color:var(--mu)}
+.sp{width:30px;height:30px;border:3px solid var(--bo);border-top-color:var(--g);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 12px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.emp{text-align:center;padding:60px 20px}
+.ei{font-size:40px;margin-bottom:12px}.et{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:5px}.ed{font-size:13px;color:var(--mu)}
+/* Tracker */
+.th{padding:24px 0 16px;display:flex;justify-content:space-between;align-items:flex-end}
+.th h1{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400}
+.tstats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+.tsc{background:#fff;border:1px solid var(--bo);border-radius:12px;padding:13px 15px;text-align:center}
+.tsn{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink)}.tsl{font-size:11px;color:var(--mu);font-weight:500}
+.tw{background:#fff;border:1px solid var(--bo);border-radius:14px;overflow:hidden;margin-bottom:40px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:860px}
+th{background:var(--g);color:#fff;padding:10px 13px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+td{padding:10px 13px;border-bottom:1px solid var(--bo);vertical-align:middle}
+tr:last-child td{border-bottom:none}tr:hover td{background:var(--gm)}
+.ss,input.ni{border:1px solid var(--bo);border-radius:6px;padding:4px 8px;font-size:12px;color:var(--ink);background:var(--wa);font-family:inherit}
+input.ni{width:150px;outline:none}input.ni:focus{border-color:var(--g)}
+.db{background:none;border:none;cursor:pointer;color:var(--mu);font-size:14px;padding:3px;border-radius:4px}.db:hover{color:var(--re)}
+.ec{text-align:center;padding:40px;color:var(--mu)}
+/* Modal */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px}
+.mo.h{display:none}
+.md{background:#fff;border-radius:18px;padding:26px;max-width:500px;width:100%;max-height:85vh;overflow-y:auto}
+.mtt{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:3px;padding-right:30px;line-height:1.3}
+.mcl{float:right;background:var(--gp);border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;color:var(--g);font-weight:700}
+.mr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.mfl{font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.mfv{font-size:13px;color:var(--ink);line-height:1.4}
+.mde{font-size:13px;color:var(--mu);line-height:1.6;max-height:150px;overflow-y:auto;margin:10px 0;padding:10px;background:var(--gm);border-radius:8px}
+.vbs{display:flex;gap:7px;margin:12px 0}
+.vbtn{flex:1;padding:8px;border-radius:8px;border:2px solid var(--bo);cursor:pointer;font-size:11px;font-weight:700;font-family:inherit;background:var(--wa);transition:all .2s}
+.vbtn:hover{border-color:var(--g)}.vbtn.sy{background:var(--lg);border-color:#155724;color:#155724}.vbtn.sn{background:var(--lr);border-color:var(--re);color:var(--re)}.vbtn.sm{background:var(--la);border-color:var(--am);color:var(--am)}
+.mac{display:flex;gap:8px;margin-top:14px}.mac .btn{flex:1;border-radius:8px}.mac .bs{flex:1;text-align:center;border-radius:8px;padding:9px}
+@media(max-width:860px){.sc{grid-template-columns:1fr 1fr}.tstats{grid-template-columns:repeat(3,1fr)}nav,#s .wrap{padding-left:16px;padding-right:16px}}
+@media(max-width:580px){.sc{grid-template-columns:1fr}.jc{grid-template-columns:1fr}.jr{align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Job<span>Hunt</span></div>
+  <div class="tabs">
+    <button class="tab on" onclick="goPage('s',this)">🔍 Search</button>
+    <button class="tab" onclick="goPage('t',this)">📋 Tracker <span id="tbadge" style="background:var(--gp);color:var(--g);font-size:10px;padding:1px 6px;border-radius:100px;margin-left:3px">0</span></button>
+  </div>
+  <div class="st"><span class="dot"></span><span id="ast">Ready</span></div>
+</nav>
+
+<div class="nb h" id="nb">
+  <div style="display:flex;align-items:center">🔔 <span id="nt" style="margin-left:8px">New jobs found</span><span class="nbadge" id="nc">0</span>since last search</div>
+  <button class="nx" onclick="document.getElementById('nb').classList.add('h')">×</button>
+</div>
+
+<!-- SEARCH PAGE -->
+<div class="pg on" id="pg-s">
+<div class="wrap">
+  <div class="ph">
+    <h1>Find your next <em style="color:var(--g);font-style:italic">analyst role</em></h1>
+    <p>Live results from LinkedIn, Indeed, Glassdoor, ZipRecruiter · Nationwide · H1B visa detection</p>
+  </div>
+  <div class="rl">Your 10 target roles</div>
+  <div class="rbs">
+    <button class="rb on" data-r="Business Analyst" onclick="pickR(this)">💼 Business Analyst</button>
+    <button class="rb" data-r="Operations Analyst" onclick="pickR(this)">⚙️ Operations Analyst</button>
+    <button class="rb" data-r="Supply Chain Analyst" onclick="pickR(this)">🔗 Supply Chain Analyst</button>
+    <button class="rb" data-r="Data Analyst" onclick="pickR(this)">📊 Data Analyst</button>
+    <button class="rb" data-r="Logistics Analyst" onclick="pickR(this)">🚛 Logistics Analyst</button>
+    <button class="rb" data-r="Demand Planning Analyst" onclick="pickR(this)">📈 Demand Planning</button>
+    <button class="rb" data-r="Business Intelligence Analyst" onclick="pickR(this)">🧠 BI Analyst</button>
+    <button class="rb" data-r="Network Optimization Analyst" onclick="pickR(this)">🗺️ Network Optimization</button>
+    <button class="rb" data-r="Business Strategy Analyst" onclick="pickR(this)">🎯 Strategy Analyst</button>
+    <button class="rb" data-r="Process Improvement Analyst" onclick="pickR(this)">🔄 Process Improvement</button>
+  </div>
+  <div class="sc">
+    <div class="cg"><div class="cl">Job Title</div><input id="qt" type="text" value="Business Analyst" placeholder="Business Analyst…"></div>
+    <div class="cg"><div class="cl">City / Metro</div><input id="ql" type="text" placeholder="New York, Chicago…"></div>
+    <div class="cg"><div class="cl">Location Type</div>
+      <select id="qr"><option value="">All — on-site + remote</option><option value="true">Remote only</option></select>
+    </div>
+    <div class="cg"><div class="cl">Date Posted</div>
+      <select id="qd">
+        <option value="today">Last 24 hours</option>
+        <option value="3days">Last 3 days</option>
+        <option value="week" selected>Last 7 days</option>
+        <option value="month">Last month</option>
+        <option value="all">Any time</option>
+      </select>
+    </div>
+    <button class="btn" id="sbtn" onclick="doSearch()">Search →</button>
+  </div>
+  <div class="fb">
+    <span class="fl">Visa</span>
+    <div class="fcs">
+      <button class="fc on" onclick="setF(this,'v','all')">All</button>
+      <button class="fc" onclick="setF(this,'v','yes')">✅ Sponsors H1B</button>
+      <button class="fc" onclick="setF(this,'v','maybe')">⚠️ Unknown</button>
+      <button class="fc" onclick="setF(this,'v','no')">❌ No Sponsorship</button>
+    </div>
+    <div class="fdiv"></div>
+    <span class="fl">Salary</span>
+    <div class="fcs">
+      <button class="fc on" onclick="setF(this,'s','0')">All</button>
+      <button class="fc" onclick="setF(this,'s','80')">$80K+</button>
+      <button class="fc" onclick="setF(this,'s','90')">$90K+</button>
+      <button class="fc" onclick="setF(this,'s','100')">$100K+</button>
+    </div>
+    <div class="ri" id="ri">Click a role to begin</div>
+  </div>
+  <div class="rg" id="rg">
+    <div class="emp"><div class="ei">🔍</div><div class="et">Click a role above to search</div><div class="ed">Pulls live from LinkedIn, Indeed, Glassdoor, ZipRecruiter and more</div></div>
+  </div>
+</div>
+</div>
+
+<!-- TRACKER PAGE -->
+<div class="pg" id="pg-t">
+<div class="wrap">
+  <div class="th">
+    <div><h1>Application <em style="color:var(--g);font-style:italic">Tracker</em></h1><p style="font-size:13px;color:var(--mu);margin-top:3px">Track every application from saved to offer</p></div>
+    <button class="btn" onclick="goPage('s',document.querySelector('.tab'))">+ Find Jobs</button>
+  </div>
+  <div class="tstats">
+    <div class="tsc"><div class="tsn" id="st">0</div><div class="tsl">Total</div></div>
+    <div class="tsc"><div class="tsn" id="sa">0</div><div class="tsl">Applied</div></div>
+    <div class="tsc"><div class="tsn" id="si">0</div><div class="tsl">Interviews</div></div>
+    <div class="tsc"><div class="tsn" id="so">0</div><div class="tsl">Offers</div></div>
+    <div class="tsc"><div class="tsn" id="sr">0</div><div class="tsl">Rejected</div></div>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Job Title</th><th>Company</th><th>Location</th><th>Salary</th><th>Visa</th><th>Status</th><th>Notes</th><th>Date</th><th></th></tr></thead>
+      <tbody id="tb"><tr><td colspan="9" class="ec">No saved jobs yet — search and save jobs to track here</td></tr></tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="mo h" id="mo" onclick="if(event.target===this)closeMo()">
+  <div class="md">
+    <button class="mcl" onclick="closeMo()">×</button>
+    <div class="mtt" id="m-t">—</div>
+    <div id="m-co" style="font-size:14px;color:var(--g);font-weight:600;margin:4px 0 12px">—</div>
+    <div class="mr">
+      <div><div class="mfl">Location</div><div class="mfv" id="m-lo">—</div></div>
+      <div><div class="mfl">Salary</div><div class="mfv" id="m-sa" style="font-weight:700">—</div></div>
+      <div><div class="mfl">Type</div><div class="mfv" id="m-ty">—</div></div>
+      <div><div class="mfl">Posted</div><div class="mfv" id="m-da">—</div></div>
+    </div>
+    <div class="mfl">Description</div>
+    <div class="mde" id="m-de">—</div>
+    <div class="mfl" style="margin-top:12px">Visa Sponsorship — set after checking myvisajobs.com</div>
+    <div class="vbs">
+      <button class="vbtn" onclick="setVM('yes')">✅ Yes — Sponsors H1B</button>
+      <button class="vbtn" onclick="setVM('maybe')">⚠️ Unknown</button>
+      <button class="vbtn" onclick="setVM('no')">❌ No Sponsorship</button>
+    </div>
+    <div class="mac">
+      <button class="btn" onclick="saveMo()">💾 Save to Tracker</button>
+      <a class="bs gr" id="m-ap" href="#" target="_blank">Apply Now →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const RKEY = '333447e4e9msh697aa6fd5cd8a16p110ee3jsn497c494523a9';
+
+let jobs=[], saved=JSON.parse(localStorage.getItem('hd_s')||'[]');
+let vmap=JSON.parse(localStorage.getItem('hd_v')||'{}');
+let lastIds=JSON.parse(localStorage.getItem('hd_li')||'[]');
+let fv='all', fs=0, mj=null;
+let lastQ={q:'',loc:'',rem:'',dp:''};
+let curPage=1;
+let cursors={1:null}; // page number -> cursor to fetch that page
+let hasNextPage=false;
+
+function extractJobs(data){
+  if(!data) return [];
+  if(Array.isArray(data)) return data;
+  if(Array.isArray(data.data)) return data.data;
+  if(data.data && Array.isArray(data.data.jobs)) return data.data.jobs;
+  if(Array.isArray(data.jobs)) return data.jobs;
+  if(Array.isArray(data.results)) return data.results;
+  return [];
+}
+
+function extractCursor(data){
+  return data.next_cursor||data.cursor||(data.data&&(data.data.next_cursor||data.data.cursor))||null;
+}
+
+function norm(j){
+  if(!j) return {};
+  return {
+    job_id:          j.job_id||j.id||j.listing_id||('id_'+Math.random().toString(36).slice(2)),
+    job_title:       j.job_title||j.title||j.position||j.role||'Analyst Role',
+    employer_name:   j.employer_name||j.company||j.company_name||j.employer||'Company',
+    job_city:        j.job_city||j.city||j.location_city||'',
+    job_state:       j.job_state||j.state||j.location_state||j.location_region||'',
+    job_country:     j.job_country||j.country||'',
+    job_is_remote:   !!(j.job_is_remote||j.is_remote||j.remote),
+    job_description: j.job_description||j.description||j.summary||j.snippet||'',
+    job_employment_type: j.job_employment_type||j.employment_type||j.job_type||j.type||'',
+    job_apply_link:  j.job_apply_link||j.apply_link||j.apply_url||j.url||j.link||'#',
+    job_publisher:   j.job_publisher||j.source||j.publisher||j.board||'',
+    job_posted_at_timestamp: j.job_posted_at_timestamp||j.posted_at||j.posted||j.date_posted||null,
+    job_min_salary:  j.job_min_salary||j.min_salary||j.salary_min||null,
+    job_max_salary:  j.job_max_salary||j.max_salary||j.salary_max||null,
+    job_salary_period: j.job_salary_period||j.salary_period||'YEAR',
+  };
+}
+
+function detectVisa(txt){
+  const t=(txt||'').toLowerCase();
+  const no=['no sponsorship','not sponsor','cannot sponsor','unable to sponsor','will not sponsor','does not sponsor','without sponsorship','must be authorized','citizen only','no h1b','no h-1b','not provide sponsor'];
+  const yes=['h1b','h-1b','visa sponsor','will sponsor','immigration support','sponsorship available','sponsor work visa','open to sponsor'];
+  for(const p of no) if(t.includes(p)) return 'no';
+  for(const p of yes) if(t.includes(p)) return 'yes';
+  return 'maybe';
+}
+
+function vBadge(v){
+  const m={yes:['✅','Sponsors H1B','vy'],no:['❌','No Sponsorship','vn'],maybe:['⚠️','Check Visa','vm']};
+  const[ic,lb,cl]=m[v]||m.maybe;
+  return `<div class="vb ${cl}">${ic} ${lb}</div>`;
+}
+
+function fmtSal(j){
+  const mn=j.job_min_salary,mx=j.job_max_salary,p=j.job_salary_period;
+  if(!mn&&!mx) return null;
+  const f=n=>n>=1000?'$'+Math.round(n/1000)+'K':'$'+n;
+  const su=p==='YEAR'?'/yr':p==='HOUR'?'/hr':'';
+  if(mn&&mx) return `${f(mn)}–${f(mx)}${su}`;
+  return mn?`${f(mn)}+${su}`:`Up to ${f(mx)}${su}`;
+}
+
+function salK(j){
+  const v=j.job_min_salary||j.job_max_salary||0;
+  return j.job_salary_period==='HOUR'?v*2080/1000:v/1000;
+}
+
+function ago(ts){
+  if(!ts) return 'Recently';
+  const t=typeof ts==='string'?Date.parse(ts):ts*1000;
+  if(isNaN(t)) return 'Recently';
+  const d=Math.floor((Date.now()-t)/86400000);
+  if(d<=0) return 'Today'; if(d===1) return 'Yesterday';
+  if(d<7) return d+'d ago'; if(d<30) return Math.floor(d/7)+'w ago';
+  return Math.floor(d/30)+'mo ago';
+}
+
+function card(raw,i){
+  const j=norm(raw);
+  const v=vmap[j.job_id]||detectVisa(j.job_description);
+  const sal=fmtSal(j);
+  const isSaved=saved.some(x=>x.job_id===j.job_id);
+  const isNew=!lastIds.includes(j.job_id);
+  const loc=j.job_is_remote?'Remote':[j.job_city,j.job_state].filter(Boolean).join(', ')||'USA';
+  const desc=(j.job_description||'').slice(0,280).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return `<div class="jc${isNew?' new':''}">
+<div>
+  <div class="jh">
+    <div class="jav">${j.employer_name.charAt(0).toUpperCase()}</div>
+    <div>
+      <div class="jt">${j.job_title}</div>
+      <div class="jco">${j.employer_name}</div>
+      <div class="jm">
+        <span class="jmi">📍 ${loc}</span>
+        ${j.job_employment_type?`<span class="jmi">⏱ ${j.job_employment_type}</span>`:''}
+        <span class="jmi">🕐 ${ago(j.job_posted_at_timestamp)}</span>
+      </div>
+    </div>
+  </div>
+  ${desc?`<div class="jde">${desc}…</div>`:''}
+  <div class="jts">
+    ${isNew?'<span class="tag tn">🆕 New</span>':''}
+    ${j.job_is_remote?'<span class="tag tr">🏠 Remote</span>':''}
+    ${j.job_publisher?`<span class="tag ts">${j.job_publisher}</span>`:''}
+  </div>
+</div>
+<div class="jr">
+  ${sal?`<div><div class="jsal">${sal}</div><div class="jss">Est. salary</div></div>`:'<div class="jss">Salary not listed</div>'}
+  ${vBadge(v)}
+  <div class="jas">
+    <button class="bs${isSaved?' sv':''}" id="sb-${j.job_id}" onclick="toggleSave(${i})">${isSaved?'✓ Saved':'+ Save'}</button>
+    <button class="bs" onclick="openMo(${i})" style="background:var(--gp);border-color:var(--g);color:var(--g)">Details</button>
+  </div>
+</div>
+</div>`;
+}
+
+function render(){
+  const list=jobs.filter(raw=>{
+    const j=norm(raw);
+    const v=vmap[j.job_id]||detectVisa(j.job_description);
+    if(fv!=='all'&&v!==fv) return false;
+    if(fs>0&&salK(j)>0&&salK(j)<fs) return false;
+    return true;
+  });
+  document.getElementById('ri').textContent=`${list.length} jobs · Page ${curPage}`;
+  const g=document.getElementById('rg');
+  if(!list.length){
+    g.innerHTML='<div class="emp"><div class="ei">📭</div><div class="et">No jobs match filters</div><div class="ed">Try adjusting visa or salary filters</div></div>';
+  } else {
+    g.innerHTML=list.map((raw,i)=>card(raw,jobs.indexOf(raw))).join('');
+  }
+  renderPager();
+}
+
+async function fetchPage(pageNum){
+  const {q,loc,rem,dp}=lastQ;
+  const query=loc?`${q} in ${loc}`:`${q} United States`;
+  const params=new URLSearchParams({query,date_posted:dp,country:'us',language:'en_US'});
+  if(rem==='true') params.set('remote_jobs_only','true');
+  // Add cursor if this is not page 1
+  const cursor=cursors[pageNum];
+  if(cursor) params.set('cursor',cursor);
+
+  const res=await fetch(`https://jsearch.p.rapidapi.com/search-v2?${params}`,{
+    method:'GET',
+    headers:{'x-rapidapi-host':'jsearch.p.rapidapi.com','x-rapidapi-key':RKEY}
+  });
+  const text=await res.text();
+  let data;
+  try{data=JSON.parse(text);}
+  catch(e){throw new Error('Non-JSON: '+text.slice(0,100));}
+  if(!res.ok) throw new Error(`API ${res.status}: ${data.message||data.error&&data.error.message||text.slice(0,120)}`);
+  return data;
+}
+
+async function doSearch(){
+  const q=document.getElementById('qt').value.trim();
+  const loc=document.getElementById('ql').value.trim();
+  const rem=document.getElementById('qr').value;
+  const dp=document.getElementById('qd').value;
+  if(!q){alert('Enter a job title first');return;}
+
+  // Reset everything for a new search
+  lastQ={q,loc,rem,dp};
+  curPage=1;
+  cursors={1:null}; // page 1 has no cursor (fresh search)
+  hasNextPage=false;
+
+  await loadPage(1);
+}
+
+async function loadPage(pageNum){
+  const btn=document.getElementById('sbtn');
+  btn.textContent='Searching…';btn.disabled=true;
+  document.getElementById('ast').textContent='Searching…';
+  document.getElementById('rg').innerHTML='<div class="spin"><div class="sp"></div><p>Searching LinkedIn, Indeed, Glassdoor, ZipRecruiter…</p></div>';
+  const old=document.getElementById('pager');
+  if(old) old.remove();
+
+  try{
+    const data=await fetchPage(pageNum);
+    const js=extractJobs(data);
+    const nextCursor=extractCursor(data);
+
+    // Store cursor for the NEXT page
+    if(nextCursor){
+      cursors[pageNum+1]=nextCursor;
+      hasNextPage=true;
+    } else {
+      hasNextPage=false;
+    }
+
+    curPage=pageNum;
+
+    // Notification for new jobs on page 1
+    if(pageNum===1){
+      const newOnes=js.filter(j=>{const id=j.job_id||j.id||'';return id&&!lastIds.includes(id);});
+      if(newOnes.length>0&&lastIds.length>0){
+        document.getElementById('nc').textContent=newOnes.length;
+        document.getElementById('nt').textContent=`${newOnes.length} new "${lastQ.q}" jobs`;
+        document.getElementById('nb').classList.remove('h');
+      }
+      localStorage.setItem('hd_li',JSON.stringify(js.map(j=>j.job_id||j.id||'').filter(Boolean)));
+    }
+
+    jobs=js;
+
+    if(js.length===0){
+      document.getElementById('rg').innerHTML='<div class="emp"><div class="ei">📭</div><div class="et">No jobs found</div><div class="ed">Try a broader search or different date range</div></div>';
+      document.getElementById('ri').textContent='0 jobs';
+    } else {
+      render();
+    }
+    document.getElementById('ast').textContent=`Connected — ${js.length} jobs · Page ${curPage}`;
+
+  }catch(e){
+    console.error('Search error:',e);
+    document.getElementById('rg').innerHTML=`<div class="emp"><div class="ei">⚠️</div><div class="et">Search failed</div><div class="ed">${e.message}</div></div>`;
+    document.getElementById('ast').textContent='Error';
+  }
+  btn.textContent='Search →';btn.disabled=false;
+}
+
+function renderPager(){
+  const old=document.getElementById('pager');
+  if(old) old.remove();
+
+  const maxKnown=Math.max(...Object.keys(cursors).map(Number));
+  const showNext=hasNextPage;
+  if(curPage===1&&!showNext) return; // only 1 page, no pager needed
+
+  const div=document.createElement('div');
+  div.id='pager';
+  div.style.cssText='display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 0 36px';
+
+  const btnStyle=(active,disabled)=>`padding:8px 14px;border-radius:8px;border:1.5px solid ${active?'var(--g)':'var(--bo)'};background:${active?'var(--g)':disabled?'var(--wa)':'#fff'};cursor:${disabled?'not-allowed':'pointer'};font-size:13px;font-weight:${active?'700':'500'};color:${active?'#fff':disabled?'var(--mu)':'var(--ink)'};font-family:inherit`;
+
+  let html='';
+  // Prev
+  html+=`<button onclick="goToPage(${curPage-1})" ${curPage===1?'disabled':''} style="${btnStyle(false,curPage===1)}">← Prev</button>`;
+
+  // Page numbers we know exist
+  const knownPages=Object.keys(cursors).map(Number).sort((a,b)=>a-b);
+  const lastKnown=maxKnown+(showNext?1:0);
+
+  for(let p=1;p<=lastKnown;p++){
+    const active=p===curPage;
+    const canGo=cursors[p]!==undefined||p===1;
+    html+=`<button onclick="${canGo?`goToPage(${p})`:''}" ${!canGo?'disabled':''} style="${btnStyle(active,!canGo)}">${p}</button>`;
+  }
+
+  // Next
+  html+=`<button onclick="goToPage(${curPage+1})" ${!showNext?'disabled':''} style="${btnStyle(false,!showNext)}">Next →</button>`;
+
+  div.innerHTML=html;
+  document.getElementById('rg').after(div);
+}
+
+async function goToPage(p){
+  if(p<1||p===curPage) return;
+  if(!cursors[p]&&p!==1){alert('Navigate pages in order — cursor for this page not yet loaded.');return;}
+  window.scrollTo({top:0,behavior:'smooth'});
+  await loadPage(p);
+}
+
+function pickR(btn){
+  document.querySelectorAll('.rb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('qt').value=btn.dataset.r;
+  doSearch();
+}
+
+function setF(chip,type,val){
+  chip.closest('.fcs').querySelectorAll('.fc').forEach(c=>c.classList.remove('on'));
+  chip.classList.add('on');
+  if(type==='v')fv=val; else fs=parseInt(val)||0;
+  if(jobs.length) render();
+}
+
+function toggleSave(i){
+  const j=norm(jobs[i]);
+  const already=saved.some(x=>x.job_id===j.job_id);
+  if(already){saved=saved.filter(x=>x.job_id!==j.job_id);}
+  else{saved.push({...j,savedAt:Date.now(),status:'saved',notes:'',visa:vmap[j.job_id]||detectVisa(j.job_description)});}
+  localStorage.setItem('hd_s',JSON.stringify(saved));
+  const b=document.getElementById('sb-'+j.job_id);
+  if(b){b.textContent=already?'+ Save':'✓ Saved';b.classList.toggle('sv',!already);}
+  updBadge();
+}
+
+function updBadge(){
+  document.getElementById('tbadge').textContent=saved.length;
+  document.getElementById('st').textContent=saved.length;
+  document.getElementById('sa').textContent=saved.filter(j=>j.status==='applied').length;
+  document.getElementById('si').textContent=saved.filter(j=>j.status==='interview').length;
+  document.getElementById('so').textContent=saved.filter(j=>j.status==='offer').length;
+  document.getElementById('sr').textContent=saved.filter(j=>j.status==='rejected').length;
+}
+
+function openMo(i){
+  const j=norm(jobs[i]);mj={raw:jobs[i],norm:j};
+  document.getElementById('m-t').textContent=j.job_title;
+  document.getElementById('m-co').textContent=j.employer_name;
+  const loc=j.job_is_remote?'Remote':[j.job_city,j.job_state].filter(Boolean).join(', ')||'—';
+  document.getElementById('m-lo').textContent=loc;
+  document.getElementById('m-sa').textContent=fmtSal(j)||'Not listed';
+  document.getElementById('m-ty').textContent=j.job_employment_type||'—';
+  document.getElementById('m-da').textContent=ago(j.job_posted_at_timestamp);
+  document.getElementById('m-de').textContent=(j.job_description||'No description available.').slice(0,900);
+  document.getElementById('m-ap').href=j.job_apply_link||'#';
+  const v=vmap[j.job_id]||detectVisa(j.job_description);
+  document.querySelectorAll('.vbtn').forEach(b=>b.className='vbtn');
+  const sel=document.querySelector(`.vbtn[onclick="setVM('${v}')"]`);
+  if(sel)sel.classList.add(v==='yes'?'sy':v==='no'?'sn':'sm');
+  document.getElementById('mo').classList.remove('h');
+}
+
+function closeMo(){document.getElementById('mo').classList.add('h');mj=null;}
+
+function setVM(v){
+  if(!mj)return;
+  const id=mj.norm.job_id;
+  vmap[id]=v;
+  localStorage.setItem('hd_v',JSON.stringify(vmap));
+  document.querySelectorAll('.vbtn').forEach(b=>b.className='vbtn');
+  document.querySelector(`.vbtn[onclick="setVM('${v}')"]`).classList.add(v==='yes'?'sy':v==='no'?'sn':'sm');
+  if(jobs.length) render();
+}
+
+function saveMo(){
+  if(!mj)return;
+  toggleSave(jobs.indexOf(mj.raw));
+  closeMo();
+}
+
+function renderTracker(){
+  updBadge();
+  const tb=document.getElementById('tb');
+  if(!saved.length){tb.innerHTML='<tr><td colspan="9" class="ec">No saved jobs yet</td></tr>';return;}
+  tb.innerHTML=saved.map((j,i)=>`<tr>
+    <td><a href="${j.job_apply_link||'#'}" target="_blank" style="color:var(--g);font-weight:600;text-decoration:none">${j.job_title||'—'}</a></td>
+    <td style="font-weight:500">${j.employer_name||'—'}</td>
+    <td style="color:var(--mu)">${j.job_is_remote?'Remote':[j.job_city,j.job_state].filter(Boolean).join(', ')||'—'}</td>
+    <td style="font-weight:600">${fmtSal(j)||'—'}</td>
+    <td>${vBadge(j.visa||'maybe')}</td>
+    <td><select class="ss" onchange="updS(${i},this.value)">
+      <option value="saved" ${j.status==='saved'?'selected':''}>💾 Saved</option>
+      <option value="applied" ${j.status==='applied'?'selected':''}>📨 Applied</option>
+      <option value="interview" ${j.status==='interview'?'selected':''}>🎤 Interview</option>
+      <option value="offer" ${j.status==='offer'?'selected':''}>🏆 Offer</option>
+      <option value="rejected" ${j.status==='rejected'?'selected':''}>❌ Rejected</option>
+    </select></td>
+    <td><input class="ni" type="text" value="${(j.notes||'').replace(/"/g,'&quot;')}" placeholder="Notes…" onchange="updN(${i},this.value)"></td>
+    <td style="color:var(--mu);font-size:12px">${new Date(j.savedAt).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</td>
+    <td><button class="db" onclick="delJ(${i})">🗑</button></td>
+  </tr>`).join('');
+}
+
+function updS(i,v){saved[i].status=v;localStorage.setItem('hd_s',JSON.stringify(saved));updBadge();}
+function updN(i,v){saved[i].notes=v;localStorage.setItem('hd_s',JSON.stringify(saved));}
+function delJ(i){saved.splice(i,1);localStorage.setItem('hd_s',JSON.stringify(saved));renderTracker();}
+
+function goPage(p,btn){
+  document.querySelectorAll('.pg').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.getElementById('pg-'+p).classList.add('on');
+  if(btn) btn.classList.add('on');
+  if(p==='t') renderTracker();
+}
+
+updBadge();
+window.addEventListener('load',()=>setTimeout(doSearch,600));
+</script>
+</body>
+</html>
